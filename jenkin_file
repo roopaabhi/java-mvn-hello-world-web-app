@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Directory') {
             steps {
-                sh 'cd /home/slave1/workspace/pipelinejob/java-mvn-hello-world-web-app/'
+                sh ' git clone https://github.com/roopaabhi/java-mvn-hello-world-web-app'
             }
         }
         stage('Compile') {
