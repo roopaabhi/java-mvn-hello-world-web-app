@@ -1,9 +1,9 @@
 pipeline {
-  agent any
+  agent { label 'slave1' } 
     stages {
         stage('Directory') {
             steps {
-                sh ' git clone https://github.com/roopaabhi/java-mvn-hello-world-web-app'
+                sh 'cd /home/slave1/workspace/pipelinejob/java-mvn-hello-world-web-app/'
             }
         }
         stage('Compile') {
@@ -18,4 +18,3 @@ pipeline {
         }
 }
 }
-
