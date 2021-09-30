@@ -1,19 +1,25 @@
 pipeline {
   agent { label 'slave1' } 
     stages {
-        stage('Directory') {
+        stage('build') {
             steps {
-                sh 'cd /home/slave1/workspace/pipelinejob/java-mvn-hello-world-web-app/'
+                sh 'docker build -t tomcatimage:latest'
             }
         }
-        stage('Compile') {
+        
+        
+        stage('deploy') {
             steps {
-                sh 'mvn compile'
+                
+                sh 'docker run -d -p 9000:8080 tomcatimage:latest'
             }
         }
-        stage('Package') {
+        }
+        stage('publish') {
             steps {
-                sh 'mvn package'
+                sh 'docker tag tomcatimage:latest 8197300345/tomcatimage:8.0'
+                sh 'docker login -u 8197300345 -p Rooabhi@7'
+                sh 'docker push 8197300345/tomcatimage:8.0'
             }
         }
 }
