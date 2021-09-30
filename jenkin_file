@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker build -t tomcatimage:latest .'
+                sh 'sudo docker build -t tomcatimage:latest .'
             }
         }
         
@@ -11,15 +11,15 @@ pipeline {
         stage('deploy') {
             steps {
                 
-                sh 'docker run -d -p 9000:8080 tomcatimage:latest'
+                sh 'sudo docker run -d -p 9000:8080 tomcatimage:latest'
             }
         }
         
         stage('publish') {
             steps {
-                sh 'docker tag tomcatimage:latest 8197300345/tomcatimage:8.0'
-                sh 'docker login -u 8197300345 -p Rooabhi@7'
-                sh 'docker push 8197300345/tomcatimage:8.0'
+                sh 'sudo docker tag tomcatimage:latest 8197300345/tomcatimage:8.0'
+                sh 'sudo docker login -u 8197300345 -p Rooabhi@7'
+                sh 'sudo docker push 8197300345/tomcatimage:8.0'
             }
         }
 }
