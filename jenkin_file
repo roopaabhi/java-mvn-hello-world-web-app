@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker build -t tomcatimage:latest'
+                sh 'docker build -t tomcatimage:latest .'
             }
         }
         
@@ -11,7 +11,7 @@ pipeline {
         stage('deploy') {
             steps {
                 
-                sh 'docker run -d -p 9000:8080 tomcatimage:latest .'
+                sh 'docker run -d -p 9000:8080 tomcatimage:latest'
             }
         }
         
