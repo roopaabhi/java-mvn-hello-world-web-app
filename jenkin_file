@@ -14,7 +14,7 @@ pipeline {
                 sh 'docker run -d -p 9000:8080 tomcatimage:latest'
             }
         }
-        }
+        
         stage('publish') {
             steps {
                 sh 'docker tag tomcatimage:latest 8197300345/tomcatimage:8.0'
